@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		334A8A0B1BBC4C740093DA0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A0A1BBC4C740093DA0D /* main.m */; };
 		334A8A0E1BBC4C740093DA0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A0D1BBC4C740093DA0D /* AppDelegate.m */; };
-		334A8A111BBC4C740093DA0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A101BBC4C740093DA0D /* ViewController.m */; };
+		334A8A111BBC4C740093DA0D /* BookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A101BBC4C740093DA0D /* BookListVC.m */; };
 		334A8A141BBC4C740093DA0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334A8A121BBC4C740093DA0D /* Main.storyboard */; };
 		334A8A161BBC4C740093DA0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334A8A151BBC4C740093DA0D /* Assets.xcassets */; };
 		334A8A191BBC4C740093DA0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334A8A171BBC4C740093DA0D /* LaunchScreen.storyboard */; };
 		334A8A241BBC4C740093DA0D /* Swag_Library_2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A231BBC4C740093DA0D /* Swag_Library_2Tests.m */; };
 		334A8A2F1BBC4C740093DA0D /* Swag_Library_2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A2E1BBC4C740093DA0D /* Swag_Library_2UITests.m */; };
+		334A8A401BBC562D0093DA0D /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A3F1BBC562D0093DA0D /* Book.m */; settings = {ASSET_TAGS = (); }; };
+		334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A421BBC57C60093DA0D /* AddBookVC.m */; settings = {ASSET_TAGS = (); }; };
+		334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +42,8 @@
 		334A8A0A1BBC4C740093DA0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		334A8A0C1BBC4C740093DA0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		334A8A0D1BBC4C740093DA0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		334A8A0F1BBC4C740093DA0D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		334A8A101BBC4C740093DA0D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		334A8A0F1BBC4C740093DA0D /* BookListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookListVC.h; sourceTree = "<group>"; };
+		334A8A101BBC4C740093DA0D /* BookListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookListVC.m; sourceTree = "<group>"; };
 		334A8A131BBC4C740093DA0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		334A8A151BBC4C740093DA0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		334A8A181BBC4C740093DA0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +54,13 @@
 		334A8A2A1BBC4C740093DA0D /* Swag Library 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swag Library 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		334A8A2E1BBC4C740093DA0D /* Swag_Library_2UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swag_Library_2UITests.m; sourceTree = "<group>"; };
 		334A8A301BBC4C740093DA0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		334A8A3C1BBC53820093DA0D /* Contants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contants.h; sourceTree = "<group>"; };
+		334A8A3E1BBC562D0093DA0D /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		334A8A3F1BBC562D0093DA0D /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		334A8A411BBC57C60093DA0D /* AddBookVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookVC.h; sourceTree = "<group>"; };
+		334A8A421BBC57C60093DA0D /* AddBookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookVC.m; sourceTree = "<group>"; };
+		334A8A441BBC5B7B0093DA0D /* BookDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailVC.h; sourceTree = "<group>"; };
+		334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				334A8A081BBC4C740093DA0D /* Swag Library 2 */,
+				334A8A3D1BBC55E20093DA0D /* Models */,
 				334A8A221BBC4C740093DA0D /* Swag Library 2Tests */,
 				334A8A2D1BBC4C740093DA0D /* Swag Library 2UITests */,
 				334A8A071BBC4C740093DA0D /* Products */,
@@ -101,10 +112,15 @@
 		334A8A081BBC4C740093DA0D /* Swag Library 2 */ = {
 			isa = PBXGroup;
 			children = (
+				334A8A3C1BBC53820093DA0D /* Contants.h */,
 				334A8A0C1BBC4C740093DA0D /* AppDelegate.h */,
 				334A8A0D1BBC4C740093DA0D /* AppDelegate.m */,
-				334A8A0F1BBC4C740093DA0D /* ViewController.h */,
-				334A8A101BBC4C740093DA0D /* ViewController.m */,
+				334A8A0F1BBC4C740093DA0D /* BookListVC.h */,
+				334A8A101BBC4C740093DA0D /* BookListVC.m */,
+				334A8A411BBC57C60093DA0D /* AddBookVC.h */,
+				334A8A421BBC57C60093DA0D /* AddBookVC.m */,
+				334A8A441BBC5B7B0093DA0D /* BookDetailVC.h */,
+				334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */,
 				334A8A121BBC4C740093DA0D /* Main.storyboard */,
 				334A8A151BBC4C740093DA0D /* Assets.xcassets */,
 				334A8A171BBC4C740093DA0D /* LaunchScreen.storyboard */,
@@ -138,6 +154,15 @@
 				334A8A301BBC4C740093DA0D /* Info.plist */,
 			);
 			path = "Swag Library 2UITests";
+			sourceTree = "<group>";
+		};
+		334A8A3D1BBC55E20093DA0D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				334A8A3E1BBC562D0093DA0D /* Book.h */,
+				334A8A3F1BBC562D0093DA0D /* Book.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,8 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				334A8A111BBC4C740093DA0D /* ViewController.m in Sources */,
+				334A8A401BBC562D0093DA0D /* Book.m in Sources */,
+				334A8A111BBC4C740093DA0D /* BookListVC.m in Sources */,
+				334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */,
 				334A8A0E1BBC4C740093DA0D /* AppDelegate.m in Sources */,
+				334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */,
 				334A8A0B1BBC4C740093DA0D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,9 +440,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Swag Library 2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JustinHaar.Swag-Library-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -423,9 +453,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Swag Library 2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JustinHaar.Swag-Library-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

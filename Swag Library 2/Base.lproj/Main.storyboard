@@ -88,7 +88,7 @@
                     <navigationItem key="navigationItem" id="YZP-kW-1Bt">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="k4j-Da-QHy">
                             <connections>
-                                <segue destination="byg-HJ-i3q" kind="presentation" id="G1n-kR-bAD"/>
+                                <segue destination="hT7-XK-uV1" kind="presentation" id="G1n-kR-bAD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -234,47 +234,22 @@
                     <view key="view" contentMode="scaleToFill" id="sm0-AN-as9">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLY-l4-wDN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="LCe-Zf-e5Q"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Add Book" id="oVI-ZX-p8r">
-                                        <barButtonItem key="rightBarButtonItem" title="X" id="xyY-XU-brh">
-                                            <connections>
-                                                <action selector="dismissButtonTapped:" destination="byg-HJ-i3q" id="1b9-0J-AKO"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="LCe-Zf-e5Q"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="LCe-Zf-e5Q"/>
-                                    </mask>
-                                </variation>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F16-VY-0n9">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5kb-t7-Olf">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5kb-t7-Olf">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Js1-AD-m4p">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Js1-AD-m4p">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-ry-zAT">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Categories - Separate With Comma" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-ry-zAT">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -303,13 +278,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Js1-AD-m4p" firstAttribute="top" secondItem="5kb-t7-Olf" secondAttribute="bottom" constant="8" id="4Sz-zE-i6u"/>
-                            <constraint firstItem="fLY-l4-wDN" firstAttribute="leading" secondItem="sm0-AN-as9" secondAttribute="leadingMargin" constant="-20" id="5Wf-8F-uln"/>
                             <constraint firstItem="Js1-AD-m4p" firstAttribute="trailing" secondItem="sm0-AN-as9" secondAttribute="trailingMargin" id="5u5-4x-1nm"/>
                             <constraint firstItem="F16-VY-0n9" firstAttribute="leading" secondItem="sm0-AN-as9" secondAttribute="leadingMargin" id="71b-4d-kNu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fLY-l4-wDN" secondAttribute="trailing" constant="-20" id="9Td-H1-Ul7"/>
                             <constraint firstItem="5kb-t7-Olf" firstAttribute="top" secondItem="F16-VY-0n9" secondAttribute="bottom" constant="8" id="Bhy-S8-S7P"/>
                             <constraint firstItem="P5T-ry-zAT" firstAttribute="trailing" secondItem="sm0-AN-as9" secondAttribute="trailingMargin" id="Cqp-D3-gMN"/>
-                            <constraint firstItem="F16-VY-0n9" firstAttribute="top" secondItem="fLY-l4-wDN" secondAttribute="bottom" constant="9" id="Ebv-lJ-2g7"/>
                             <constraint firstItem="P5T-ry-zAT" firstAttribute="top" secondItem="Js1-AD-m4p" secondAttribute="bottom" constant="8" id="IGe-CZ-K6d"/>
                             <constraint firstItem="5kb-t7-Olf" firstAttribute="leading" secondItem="sm0-AN-as9" secondAttribute="leadingMargin" id="Rai-qW-gkd"/>
                             <constraint firstItem="jJz-W9-A8d" firstAttribute="leading" secondItem="sm0-AN-as9" secondAttribute="leadingMargin" id="UiY-rM-DwI"/>
@@ -319,11 +291,10 @@
                             <constraint firstItem="F16-VY-0n9" firstAttribute="trailing" secondItem="sm0-AN-as9" secondAttribute="trailingMargin" id="fTq-CW-lM8"/>
                             <constraint firstItem="P5T-ry-zAT" firstAttribute="leading" secondItem="sm0-AN-as9" secondAttribute="leadingMargin" id="qgn-Ml-nUL"/>
                             <constraint firstItem="jJz-W9-A8d" firstAttribute="trailing" secondItem="sm0-AN-as9" secondAttribute="trailingMargin" id="sVF-Gp-TiA"/>
-                            <constraint firstItem="fLY-l4-wDN" firstAttribute="top" secondItem="XDD-KQ-d4s" secondAttribute="bottom" id="seK-PO-ESM"/>
+                            <constraint firstItem="F16-VY-0n9" firstAttribute="top" secondItem="XDD-KQ-d4s" secondAttribute="bottom" constant="9" id="tpc-Mn-BVK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="fLY-l4-wDN"/>
                                 <exclude reference="F16-VY-0n9"/>
                                 <exclude reference="5kb-t7-Olf"/>
                                 <exclude reference="Js1-AD-m4p"/>
@@ -331,12 +302,9 @@
                                 <exclude reference="jJz-W9-A8d"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5Wf-8F-uln"/>
-                                <exclude reference="9Td-H1-Ul7"/>
-                                <exclude reference="seK-PO-ESM"/>
                                 <exclude reference="71b-4d-kNu"/>
-                                <exclude reference="Ebv-lJ-2g7"/>
                                 <exclude reference="fTq-CW-lM8"/>
+                                <exclude reference="tpc-Mn-BVK"/>
                                 <exclude reference="Bhy-S8-S7P"/>
                                 <exclude reference="Rai-qW-gkd"/>
                                 <exclude reference="Wud-vM-61d"/>
@@ -353,7 +321,6 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="fLY-l4-wDN"/>
                                 <include reference="F16-VY-0n9"/>
                                 <include reference="5kb-t7-Olf"/>
                                 <include reference="Js1-AD-m4p"/>
@@ -361,12 +328,9 @@
                                 <include reference="jJz-W9-A8d"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5Wf-8F-uln"/>
-                                <include reference="9Td-H1-Ul7"/>
-                                <include reference="seK-PO-ESM"/>
                                 <include reference="71b-4d-kNu"/>
-                                <include reference="Ebv-lJ-2g7"/>
                                 <include reference="fTq-CW-lM8"/>
+                                <include reference="tpc-Mn-BVK"/>
                                 <include reference="Bhy-S8-S7P"/>
                                 <include reference="Rai-qW-gkd"/>
                                 <include reference="Wud-vM-61d"/>
@@ -382,18 +346,24 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="QvD-4G-Bha">
+                        <barButtonItem key="rightBarButtonItem" title="X" id="Snm-VQ-dsW">
+                            <connections>
+                                <action selector="dismissButtonTapped:" destination="byg-HJ-i3q" id="8PE-y5-50Y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonAddBook" destination="jJz-W9-A8d" id="GJg-h9-fNs"/>
-                        <outlet property="navBar" destination="fLY-l4-wDN" id="WmF-AA-qoy"/>
                         <outlet property="textfieldAuthor" destination="5kb-t7-Olf" id="dvm-xg-P0J"/>
-                        <outlet property="textfieldCategory" destination="P5T-ry-zAT" id="3sO-Ay-ULK"/>
+                        <outlet property="textfieldCategories" destination="P5T-ry-zAT" id="Qyo-QQ-8M1"/>
                         <outlet property="textfieldPublisher" destination="Js1-AD-m4p" id="da1-Ar-eBF"/>
                         <outlet property="textfieldTitle" destination="F16-VY-0n9" id="TL8-4i-6uy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXe-mC-LLr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="1046"/>
+            <point key="canvasLocation" x="2124" y="1046"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bPb-zS-czp">
@@ -430,6 +400,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkS-Bb-9Bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1935" y="321"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1B1-tT-Put">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hT7-XK-uV1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJE-fz-EbE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="byg-HJ-i3q" kind="relationship" relationship="rootViewController" id="zC7-Yb-y0Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OAO-hx-5jB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="1046"/>
         </scene>
     </scenes>
 </document>

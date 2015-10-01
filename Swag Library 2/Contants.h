@@ -12,4 +12,12 @@
 //CellID
 #define kCellid @"cellID"
 
+//AddBookTags
+typedef NS_ENUM(NSInteger, AddBookTextField) {
+    kTitle,
+    kAuthor,
+    kPublisher,
+    kCategories
+};
+
 #endif /* Contants_h */

@@ -11,11 +11,16 @@
 @interface Book : NSObject
 
 @property NSString *author;
-@property NSString *category;
+@property NSMutableArray *categories;
 @property NSDate *lastCheckedOut;
 @property NSString *lastCheckedOutBy;
 @property NSString *publisher;
 @property NSString *title;
 @property NSString *url;
+
++(void)getBooksWithBlock:(void(^)(NSArray*))complete;
+
+//+(NSMutableArray*)getBooks;
+
 
 @end

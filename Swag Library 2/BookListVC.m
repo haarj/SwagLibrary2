@@ -9,9 +9,11 @@
 #import "BookListVC.h"
 #import "Contants.h"   
 #import "BookDetailVC.h"
+#import "Book.h"
 
 @interface BookListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic)  NSMutableArray *books;
 
 @end
 
@@ -20,23 +22,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [Book getBooksWithBlock:^(NSArray *array) {
+        self.books = [array mutableCopy];
+    }];
+//    self.books = [Book getBooks];
 
 
 }
 
+-(void)setBooks:(NSMutableArray *)books
+{
+    _books = books;
+    [self.tableView reloadData];
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellid];
-    cell.textLabel.text = @"Test";
-    cell.detailTextLabel.text = @"detail";
+    Book *book = self.books[indexPath.row];
+    cell.textLabel.text = book.title.description;
+    cell.detailTextLabel.text = book.author.description;
     return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.books.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -46,6 +58,9 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     BookDetailVC *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"bookdetail"];
 
+    Book *book = self.books[indexPath.row];
+
+    detailVC.book = book;
     
     [self showViewController:detailVC sender:self];
 

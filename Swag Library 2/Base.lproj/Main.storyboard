@@ -226,7 +226,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="0gw-M8-44J"/>
+                    <navigationItem key="navigationItem" id="0gw-M8-44J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="uAJ-Yw-JJv">
+                            <connections>
+                                <action selector="shareBook:" destination="Z8x-3X-yzf" id="zMh-kD-DaT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonCheckout" destination="u4h-JS-97h" id="hP3-3W-Kdz"/>
                         <outlet property="labelDetails" destination="qH7-U6-Tva" id="gBq-bB-Zse"/>

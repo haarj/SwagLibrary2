@@ -20,29 +20,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = self.book.title;
+
 
     self.labelTitleAuthor.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelTitleAuthor.numberOfLines = 0;
     self.labelTitleAuthor.text = [NSString stringWithFormat:@"%@\n%@", self.book.title, self.book.author];
 
-//    NSString *categoryString = [NSString new];
-
-//    if (!self.book.categories) {
-//        categoryString = @"";
-//    }else{
-//        categoryString = [self.book.categories componentsJoinedByString:@", "];
-
-//    }
-
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss zzz";
-    NSString *dateString = [formatter stringFromDate:self.book.lastCheckedOut];
-
     self.labelDetails.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelDetails.numberOfLines = 0;
-    self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOut:\n%@ on %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, dateString];
+    self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOutBy:\n%@ on %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, self.book.lastCheckedOut];
 
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)checkoutButtonTapped:(UIButton *)sender {
@@ -60,7 +48,11 @@
 
         UITextField *textfield = alert.textFields.firstObject;
         self.book.lastCheckedOutBy = textfield.text;
-        self.book.lastCheckedOut = [NSDate date];
+
+        NSDateFormatter *formatter = [NSDateFormatter new];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss zzz";
+        NSString *dateString = [formatter stringFromDate:[NSDate date]];
+        self.book.lastCheckedOut = dateString;
         [self updateBook];
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -106,4 +98,14 @@
     
 }
 
+- (IBAction)shareBook:(UIBarButtonItem *)sender {
+
+    NSMutableArray *items = [NSMutableArray new];
+    NSString *message = [NSString stringWithFormat:@"Hey everyone! Check out this amazing book I just got from the Swag library. If you're not reading this book, you don't have your swag on! Here are the details:\nTitle:%@\nAuthor:%@\nPublisher:%@\nCategory:%@", self.book.title, self.book.author, self.book.publisher, self.book.category];
+
+    [items addObject:message];
+
+    UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
 @end

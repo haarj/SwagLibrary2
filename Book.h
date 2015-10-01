@@ -12,7 +12,7 @@
 
 @property NSString *author;
 @property NSString *category;
-@property NSDate *lastCheckedOut;
+@property NSString *lastCheckedOut;
 @property NSString *lastCheckedOutBy;
 @property NSString *publisher;
 @property NSString *title;

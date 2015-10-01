@@ -28,7 +28,15 @@
     self.title = @"Add Book";
     [self setDelegateAndTextfieldUI];
     self.book = [Book new];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
     
+}
+
+-(void)endEditing
+{
+    [self.view endEditing:YES];
 }
 
 -(void)setDelegateAndTextfieldUI
@@ -111,7 +119,7 @@
 
 -(void)postBook
 {
-    NSString *post = [NSString stringWithFormat:@"title=%@&author=%@&publisher=%@&categories=%@", self.book.title, self.book.author, self.book.publisher, self.book.categories];
+    NSString *post = [NSString stringWithFormat:@"title=%@&author=%@&publisher=%@&categories=%@", self.book.title, self.book.author, self.book.publisher, self.book.category];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     NSMutableURLRequest *request = [NSMutableURLRequest new];
@@ -160,40 +168,44 @@
             self.book.publisher = textField.text;
             break;
         case kCategories:
-            [self validateCategoriesTextField];
+//            string = [self.textfieldCategories.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+//            self.book.category =[[string componentsSeparatedByString:@","] mutableCopy];
+            self.book.category = textField.text;
+
+//            [self validateCategoriesTextField];
             break;
         default:
             break;
     }
 }
 
--(void)validateCategoriesTextField
-{
+//-(void)validateCategoriesTextField
+//{
 //    BOOL valid;
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, "] invertedSet];
-    NSRange range = [self.textfieldCategories.text rangeOfCharacterFromSet:blockedCharacters];
+//    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, "] invertedSet];
+//    NSRange range = [self.textfieldCategories.text rangeOfCharacterFromSet:blockedCharacters];
+//
+//    if (range.length == 0) {
+//            [self.textfieldCategories resignFirstResponder];
+//        NSString *string = [NSString new];
+//        string = [self.textfieldCategories.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+//        self.book.categories =[[string componentsSeparatedByString:@","] mutableCopy];
+//    }else{
+//        [self getInvalidCategoriesTextFieldAlert];
+//    }
 
-    if (range.length == 0) {
-            [self.textfieldCategories resignFirstResponder];
-        NSString *string = [NSString new];
-        string = [self.textfieldCategories.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        self.book.categories =[[string componentsSeparatedByString:@","] mutableCopy];
-    }else{
-        [self getInvalidCategoriesTextFieldAlert];
-    }
+//}
 
-}
-
--(void)getInvalidCategoriesTextFieldAlert
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Categories Textfield contains invalid characters." preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-
-    [alert addAction:ok];
-
-    [self presentViewController:alert animated:YES completion:nil];
-
-}
+//-(void)getInvalidCategoriesTextFieldAlert
+//{
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Categories Textfield contains invalid characters." preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+//
+//    [alert addAction:ok];
+//
+//    [self presentViewController:alert animated:YES completion:nil];
+//
+//}
 
 @end

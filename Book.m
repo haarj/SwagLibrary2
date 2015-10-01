@@ -24,7 +24,7 @@
 //    },
     if (self) {
         self.author = dict[@"author"];
-        self.categories = dict[@"categories"];
+        self.category = dict[@"categories"];
         self.lastCheckedOut = dict[@"lastCheckedOut"];
         self.lastCheckedOutBy = dict[@"lastCheckedOutBy"];
         self.publisher = dict[@"publisher"];

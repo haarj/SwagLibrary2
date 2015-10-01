@@ -11,7 +11,7 @@
 @interface Book : NSObject
 
 @property NSString *author;
-@property NSMutableArray *categories;
+@property NSString *category;
 @property NSDate *lastCheckedOut;
 @property NSString *lastCheckedOutBy;
 @property NSString *publisher;

@@ -64,6 +64,7 @@
     }else
     {
         [self postBook];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -85,7 +86,7 @@
 -(void)getErrorsAlertViewFromArray:(NSMutableArray*)array
 {
     NSString *string = [array componentsJoinedByString:@"\n"];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Errors" message:[NSString stringWithFormat:@"The following field(s) are required:\n%@", string] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error(s)" message:[NSString stringWithFormat:@"The following field(s) are required:\n%@", string] preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
 
@@ -97,6 +98,23 @@
 
 -(void)postBook
 {
+    NSString *post = [NSString stringWithFormat:@"title=%@&author=%@&publisher=%@&categories=%@", self.book.title, self.book.author, self.book.publisher, self.book.categories];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    NSMutableURLRequest *request = [NSMutableURLRequest new];
+    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/books"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+    if(conn) {
+        NSLog(@"Connection Successful:%@", conn);
+    } else {
+        NSLog(@"Connection could not be made");
+    }
 
 }
 
@@ -113,7 +131,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSString *string = [NSString new];
+//    NSString *string = [NSString new];
 
     switch (textField.tag) {
         case kTitle:
@@ -129,10 +147,6 @@
             self.book.publisher = textField.text;
             break;
         case kCategories:
-//            [self.textfieldCategories resignFirstResponder];
-//            string = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-//            self.book.categories =[[string componentsSeparatedByString:@","] mutableCopy];
-
             [self validateCategoriesTextField];
             break;
         default:
@@ -143,13 +157,30 @@
 -(void)validateCategoriesTextField
 {
 //    BOOL valid;
-    NSCharacterSet *blockedCharacters = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
-    blockedCharacters
+    NSCharacterSet *blockedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789, "] invertedSet];
     NSRange range = [self.textfieldCategories.text rangeOfCharacterFromSet:blockedCharacters];
 
-//    if (range.length > 0) {
-//        <#statements#>
-//    }
+    if (range.length == 0) {
+            [self.textfieldCategories resignFirstResponder];
+        NSString *string = [NSString new];
+        string = [self.textfieldCategories.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        self.book.categories =[[string componentsSeparatedByString:@","] mutableCopy];
+    }else{
+        [self getInvalidCategoriesTextFieldAlert];
+    }
 
 }
+
+-(void)getInvalidCategoriesTextFieldAlert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Categories Textfield contains invalid characters." preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
 @end

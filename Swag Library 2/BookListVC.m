@@ -22,12 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [Book getBooksWithBlock:^(NSArray *array) {
         self.books = [array mutableCopy];
     }];
-//    self.books = [Book getBooks];
-
-
 }
 
 -(void)setBooks:(NSMutableArray *)books

@@ -24,13 +24,19 @@
 
     self.title = @"Swag Library";
 
+    [Book getBooksWithBlock:^(NSArray *array) {
+        self.books = [array mutableCopy];
+    }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [Book getBooksWithBlock:^(NSArray *array) {
-        self.books = [array mutableCopy];
-    }];
+//    [Book getBooksWithBlock:^(NSArray *array) {
+//        self.books = [array mutableCopy];
+//    }];
+
+//    self.books = [Book getBooks];
 
     self.tableView.editing = NO;
 
@@ -90,7 +96,8 @@
         self.tableView.editing = NO;
         [self.tableView reloadData];
 
-        [self deleteBook:book];
+        [Book deleteBook:book];
+//        [self deleteBook:book];
 
     }
 }
@@ -112,7 +119,8 @@
     UIAlertAction *no = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
-        [self deleteAllBooks];
+//        [self deleteAllBooks];
+        [Book deleteAllBooks];
         [self viewWillAppear:YES];
         [self.tableView reloadData];
 
@@ -125,37 +133,37 @@
     
 }
 
--(void)deleteAllBooks
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
-    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/clean"]];
-    [request setHTTPMethod:@"DELETE"];
-//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//-(void)deleteAllBooks
+//{
+//    NSMutableURLRequest *request = [NSMutableURLRequest new];
+//    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/clean"]];
+//    [request setHTTPMethod:@"DELETE"];
+////    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
+//}
 
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-}
-
--(void)deleteBook:(Book*)book
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
-    NSString *string = [NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84%@", book.url];
-    [request setURL:[NSURL URLWithString:string]];
-    [request setHTTPMethod:@"DELETE"];
-    //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-}
+//-(void)deleteBook:(Book*)book
+//{
+//    NSMutableURLRequest *request = [NSMutableURLRequest new];
+//    NSString *string = [NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84%@", book.url];
+//    [request setURL:[NSURL URLWithString:string]];
+//    [request setHTTPMethod:@"DELETE"];
+//    //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
+//}
 
 @end

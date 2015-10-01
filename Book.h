@@ -20,6 +20,17 @@
 
 +(void)getBooksWithBlock:(void(^)(NSArray*))complete;
 
++(void)deleteAllBooks;
+
++(void)deleteBook:(Book*)book;
+
++(void)postBook:(Book*)book;
+
++(void)updateBook:(Book*)book;
+
+
+
+
 //+(NSMutableArray*)getBooks;
 
 

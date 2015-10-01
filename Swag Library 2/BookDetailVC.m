@@ -53,7 +53,8 @@
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss zzz";
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         self.book.lastCheckedOut = dateString;
-        [self updateBook];
+        
+        [Book updateBook:self.book];
         [self.navigationController popViewControllerAnimated:YES];
     }];
 
@@ -75,28 +76,6 @@
     }
 }
 
--(void)updateBook
-{
-    NSString *post = [NSString stringWithFormat:@"lastCheckedOutBy=%@&lastCheckedOut=%@", self.book.lastCheckedOutBy, self.book.lastCheckedOut];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
-    NSString *string = [NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84%@",self.book.url];
-    [request setURL:[NSURL URLWithString:string]];
-    [request setHTTPMethod:@"PUT"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-    
-}
 
 - (IBAction)shareBook:(UIBarButtonItem *)sender {
 

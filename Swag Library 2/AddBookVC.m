@@ -84,7 +84,8 @@
         [self getErrorsAlertViewFromArray:errors];
     }else
     {
-        [self postBook];
+        [Book postBook:self.book];
+//        [self postBook];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -117,27 +118,6 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)postBook
-{
-    NSString *post = [NSString stringWithFormat:@"title=%@&author=%@&publisher=%@&categories=%@", self.book.title, self.book.author, self.book.publisher, self.book.category];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
-    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/books"]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-
-}
 
 #pragma mark - TextField Delegate Methods
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -168,11 +148,7 @@
             self.book.publisher = textField.text;
             break;
         case kCategories:
-//            string = [self.textfieldCategories.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-//            self.book.category =[[string componentsSeparatedByString:@","] mutableCopy];
             self.book.category = textField.text;
-
-//            [self validateCategoriesTextField];
             break;
         default:
             break;

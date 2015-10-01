@@ -25,23 +25,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Add Book";
+    [self setDelegateAndTextfieldUI];
+    self.book = [Book new];
+    
+}
 
+-(void)setDelegateAndTextfieldUI
+{
     self.textfieldTitle.delegate = self;
     self.textfieldAuthor.delegate = self;
     self.textfieldPublisher.delegate = self;
     self.textfieldCategories.delegate = self;
 
-    self.book = [Book new];
-    
+    self.textfieldTitle.borderStyle = UITextBorderStyleNone;
+    self.textfieldAuthor.borderStyle = UITextBorderStyleNone;
+    self.textfieldPublisher.borderStyle = UITextBorderStyleNone;
+    self.textfieldCategories.borderStyle = UITextBorderStyleNone;
 }
 
 
 - (IBAction)dismissButtonTapped:(UIBarButtonItem *)sender
 {
 
-    //Get alert view to confirm cancel adding book
-    [self getDismissAlertView];
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    //All textfields are empty
+    if ([self.textfieldTitle.text isEqual:@""] && [self.textfieldAuthor.text isEqual:@""] && [self.textfieldPublisher.text isEqual:@""] && [self.textfieldCategories.text isEqual:@""]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else//there is text in at least one field
+    {
+        [self getDismissAlertView];
+    }
 }
 - (IBAction)submitButtonTapped:(UIButton *)sender
 {

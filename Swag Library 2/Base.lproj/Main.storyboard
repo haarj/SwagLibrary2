@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Book ListVC-->
@@ -91,6 +92,18 @@
                                 <segue destination="hT7-XK-uV1" kind="presentation" id="G1n-kR-bAD"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="z4f-Ra-mPW">
+                                <connections>
+                                    <action selector="trashButtonTapped:" destination="BYZ-38-t0r" id="Zgg-QU-yP1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="Efc-mB-aeA">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="BYZ-38-t0r" id="iSz-aT-NCp"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LWx-OA-1c8" id="i2N-0V-enu"/>
@@ -155,9 +168,10 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4h-JS-97h">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4h-JS-97h">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Checkout"/>
                                 <connections>
                                     <action selector="checkoutButtonTapped:" destination="Z8x-3X-yzf" eventType="touchUpInside" id="pcv-1b-MBt"/>
                                 </connections>
@@ -254,12 +268,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJz-W9-A8d">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJz-W9-A8d">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ilU-dk-TLQ"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Submit"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="ilU-dk-TLQ"/>
@@ -347,7 +362,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="QvD-4G-Bha">
-                        <barButtonItem key="rightBarButtonItem" title="X" id="Snm-VQ-dsW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Snm-VQ-dsW">
                             <connections>
                                 <action selector="dismissButtonTapped:" destination="byg-HJ-i3q" id="8PE-y5-50Y"/>
                             </connections>

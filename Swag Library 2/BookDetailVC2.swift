@@ -20,12 +20,15 @@ class BookDetailVC2: UIViewController {
         super.viewDidLoad()
 
         self.title = self.book.title
+
         self.labelTitleAuthor!.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.labelTitleAuthor!.numberOfLines = 0
         self.labelTitleAuthor!.font = UIFont.systemFontOfSize(20)
         self.labelTitleAuthor!.textColor = UIColor.blueColor()
         self.labelTitleAuthor!.text = "\(self.book.title)\n\(self.book.author)"
-        self.replaceNullValuesForTextFields()
+
+//        self.replaceNullValuesForTextFields()
+        
         self.labelDetails!.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.labelDetails!.numberOfLines = 0
         self.labelDetails!.font = UIFont.systemFontOfSize(14)
@@ -33,32 +36,38 @@ class BookDetailVC2: UIViewController {
         self.labelDetails!.text = "Publisher: \(self.book.publisher)\nCategories: \(self.book.category)\nLastCheckedOutBy:\n\(self.book.lastCheckedOutBy) \(self.book.lastCheckedOut)"
     }
 
-    func replaceNullValuesForTextFields() {
-        if self.book.publisher.isEqual("(null)") {
-            self.book.publisher = ""
-        }
-        if self.book.category.isEqual("(null)") {
-            self.book.category = ""
-        }
+//    func replaceNullValuesForTextFields() {
+//        if self.book.publisher.isEqual("(null)") {
+//            self.book.publisher = ""
+//        }
+//        if self.book.category.isEqual("(null)") {
+//            self.book.category = ""
+//        }
 
-        if self.book.lastCheckedOutBy == NSNull() {
-            self.book.lastCheckedOutBy = (String: "")
-        }
-        if self.book.lastCheckedOut == NSNull() {
-            self.book.lastCheckedOut = ""
-        }
-    }
+//        if self.book.lastCheckedOutBy == NSNull() {
+//            self.book.lastCheckedOutBy = (String: "")
+//        }
+//        if self.book.lastCheckedOut == NSNull() {
+//            self.book.lastCheckedOut = ""
+//        }
+//    }
 
     @IBAction func checkoutButtonTapped(sender: UIButton) {
         let alert: UIAlertController = UIAlertController.init(title: "Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
 //        var alert: UIAlertController = UIAlertController.alertControllerWithTitle("Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in            textField.placeholder = "Enter Name"
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
+            textField.placeholder = "Enter Name"
             textField.autocapitalizationType = UITextAutocapitalizationType.Words
-            textField.addTarget(self, action: "alertTextFieldDidChange:", forControlEvents: UIControlEvents.AllEvents)
+            textField.addTarget(self, action:"alertTextFieldDidChange:", forControlEvents: UIControlEvents.AllEvents)
 
         })
+
         let cancel: UIAlertAction = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-        let add: UIAlertAction = UIAlertAction.init(title: "Add", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+
+        let add: UIAlertAction = UIAlertAction.init(title: "Add", style: UIAlertActionStyle.Default) {
+
+            (UIAlertAction) -> Void in
+
             let textfield: UITextField = (alert.textFields?.first)!
             self.book.lastCheckedOutBy = textfield.text
             let formatter: NSDateFormatter = NSDateFormatter.init()
@@ -91,6 +100,7 @@ class BookDetailVC2: UIViewController {
     func alertTextFieldDidChange(sender: UITextField) {
 
         let alertController: UIAlertController = UIAlertController()
+
         if (alertController.presentedViewController != nil) {
             let login: UITextField = (alertController.textFields?.first)!
             let okAction: UIAlertAction = (alertController.actions.last)!

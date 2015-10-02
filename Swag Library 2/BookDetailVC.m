@@ -63,6 +63,7 @@
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Enter Name";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
         [textField addTarget:self action:@selector(alertTextFieldDidChange:) forControlEvents:UIControlEventAllEvents];
     }];
 

@@ -9,6 +9,7 @@
 #import "AddBookVC.h"
 #import "Contants.h"
 #import "Book.h"
+#import "BookListVC.h"
 
 @interface AddBookVC () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
@@ -39,9 +40,17 @@
     self.textfieldCategories.delegate = self;
 
     self.textfieldTitle.borderStyle = UITextBorderStyleNone;
+    self.textfieldTitle.autocapitalizationType = UITextAutocapitalizationTypeWords;
+
     self.textfieldAuthor.borderStyle = UITextBorderStyleNone;
+    self.textfieldAuthor.autocapitalizationType = UITextAutocapitalizationTypeWords;
+
     self.textfieldPublisher.borderStyle = UITextBorderStyleNone;
+    self.textfieldPublisher.autocapitalizationType = UITextAutocapitalizationTypeWords;
+
     self.textfieldCategories.borderStyle = UITextBorderStyleNone;
+    self.textfieldCategories.autocapitalizationType = UITextAutocapitalizationTypeWords;
+
 }
 
 

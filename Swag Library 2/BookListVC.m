@@ -33,7 +33,6 @@
     self.refreshControl.tintColor = [UIColor whiteColor];
     self.refreshControl.backgroundColor = [UIColor blueColor];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -64,7 +63,7 @@
 
         [indicator stopAnimating];
     }];
-    
+
     self.tableView.editing = NO;
 }
 

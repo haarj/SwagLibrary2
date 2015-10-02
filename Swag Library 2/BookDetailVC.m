@@ -25,6 +25,8 @@
 
     self.labelTitleAuthor.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelTitleAuthor.numberOfLines = 0;
+    self.labelTitleAuthor.font = [UIFont systemFontOfSize:20];
+    self.labelTitleAuthor.textColor = [UIColor blueColor];
 
     self.labelTitleAuthor.text = [NSString stringWithFormat:@"%@\n%@", self.book.title, self.book.author];
 
@@ -32,6 +34,9 @@
 
     self.labelDetails.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelDetails.numberOfLines = 0;
+    self.labelDetails.font = [UIFont systemFontOfSize:14];
+    self.labelDetails.textColor = [UIColor grayColor];
+
     self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOutBy:\n%@ %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, self.book.lastCheckedOut];
 
 }
@@ -70,7 +75,7 @@
 
         NSDateFormatter *formatter = [NSDateFormatter new];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss zzz";
-        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"GMT"];
+        formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         self.book.lastCheckedOut = dateString;
         

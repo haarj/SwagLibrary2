@@ -10,11 +10,14 @@
 #import "Contants.h"   
 #import "BookDetailVC.h"
 #import "Book.h"
+#import "BookListVCCell.h"
 
 @interface BookListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic)  NSMutableArray *books;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trashButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property UIRefreshControl *refreshControl;
 
 @end
 
@@ -25,21 +28,43 @@
 
     self.title = @"Swag Library";
 
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.backgroundColor = [UIColor blueColor];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicator.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+
+    indicator.hidden = NO;
+    indicator.color = [UIColor blueColor];
+    indicator.hidesWhenStopped = YES;
+
+    [self.view addSubview:indicator];
+
+    [indicator startAnimating];
+
     [Book getBooksWithBlock:^(NSArray *array) {
         self.books = [array mutableCopy];
 
         if (self.books.count > 0) {
             self.trashButton.enabled = YES;
+            self.editButton.enabled = YES;
+            //enable edit button
         }else
         {
             self.trashButton.enabled = NO;
+            self.editButton.enabled = NO;
         }
-    }];
 
+        [indicator stopAnimating];
+    }];
+    
     self.tableView.editing = NO;
 }
 
@@ -49,17 +74,26 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - TableView Delegates
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellid];
+    BookListVCCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellid];
     Book *book = self.books[indexPath.row];
-    cell.textLabel.text = book.title.description;
-    cell.detailTextLabel.text = book.author.description;
 
-    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+    cell.label.font = [UIFont systemFontOfSize:16];
+    cell.label.textColor = [UIColor blueColor];
+    cell.label.alpha = 0.4;
+    cell.label.numberOfLines = 0;
+    cell.label.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.label.text = [NSString stringWithFormat:@"%@\n%@", book.title, book.author];
+//    cell.textLabel.text = book.title.description;
+//    cell.detailTextLabel.text = book.author.description;
+
+//    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
     cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
     cell.imageView.clipsToBounds = YES;
-    cell.imageView.layer.cornerRadius = cell.imageView.layer.frame.size.height/2;
+    cell.imageView.layer.cornerRadius = 20;
     cell.imageView.layer.borderWidth = 1;
     cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
 
@@ -89,12 +123,12 @@
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.editing == YES) {
-        return  UITableViewCellEditingStyleDelete;
-    }else
-    {
-        return UITableViewCellEditingStyleNone;
-    }
+    return  UITableViewCellEditingStyleDelete;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,12 +136,14 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Book *book = self.books[indexPath.row];
         [self.books removeObject:book];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         self.tableView.editing = NO;
-        [self.tableView reloadData];
 
         [Book deleteBook:book];
     }
 }
+
+#pragma mark - Button Methods
 
 - (IBAction)trashButtonTapped:(UIBarButtonItem *)sender
 {
@@ -119,6 +155,8 @@
     self.tableView.editing = !self.tableView.editing;
 }
 
+#pragma mark - Helper Methods
+
 -(void)deleteAllBooksAlert
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Book(s)?" message:@"Choosing Yes will delete all books!" preferredStyle:UIAlertControllerStyleAlert];
@@ -129,6 +167,8 @@
         [Book deleteAllBooks];
         [self.books removeAllObjects];
         [self.tableView reloadData];
+        self.trashButton.enabled = NO;
+        self.editButton.enabled = NO;
 
     }];
 
@@ -136,6 +176,15 @@
     [alert addAction:yes];
 
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)handleRefresh
+{
+    [self.refreshControl beginRefreshing];
+    [Book getBooksWithBlock:^(NSArray *array) {
+        self.books = [array mutableCopy];
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 @end

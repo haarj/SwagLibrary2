@@ -18,6 +18,7 @@
 		334A8A401BBC562D0093DA0D /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A3F1BBC562D0093DA0D /* Book.m */; settings = {ASSET_TAGS = (); }; };
 		334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A421BBC57C60093DA0D /* AddBookVC.m */; settings = {ASSET_TAGS = (); }; };
 		334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		33E659BA1BBEE0C4009D5857 /* BookListVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E659B91BBEE0C4009D5857 /* BookListVCCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		334A8A421BBC57C60093DA0D /* AddBookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookVC.m; sourceTree = "<group>"; };
 		334A8A441BBC5B7B0093DA0D /* BookDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailVC.h; sourceTree = "<group>"; };
 		334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailVC.m; sourceTree = "<group>"; };
+		33E659B81BBEE0C4009D5857 /* BookListVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListVCCell.h; sourceTree = "<group>"; };
+		33E659B91BBEE0C4009D5857 /* BookListVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListVCCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				334A8A0D1BBC4C740093DA0D /* AppDelegate.m */,
 				334A8A0F1BBC4C740093DA0D /* BookListVC.h */,
 				334A8A101BBC4C740093DA0D /* BookListVC.m */,
+				33E659B81BBEE0C4009D5857 /* BookListVCCell.h */,
+				33E659B91BBEE0C4009D5857 /* BookListVCCell.m */,
 				334A8A411BBC57C60093DA0D /* AddBookVC.h */,
 				334A8A421BBC57C60093DA0D /* AddBookVC.m */,
 				334A8A441BBC5B7B0093DA0D /* BookDetailVC.h */,
@@ -298,6 +303,7 @@
 				334A8A401BBC562D0093DA0D /* Book.m in Sources */,
 				334A8A111BBC4C740093DA0D /* BookListVC.m in Sources */,
 				334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */,
+				33E659BA1BBEE0C4009D5857 /* BookListVCCell.m in Sources */,
 				334A8A0E1BBC4C740093DA0D /* AppDelegate.m in Sources */,
 				334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */,
 				334A8A0B1BBC4C740093DA0D /* main.m in Sources */,
@@ -528,6 +534,7 @@
 				334A8A351BBC4C740093DA0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		334A8A361BBC4C740093DA0D /* Build configuration list for PBXNativeTarget "Swag Library 2Tests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +543,7 @@
 				334A8A381BBC4C740093DA0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		334A8A391BBC4C740093DA0D /* Build configuration list for PBXNativeTarget "Swag Library 2UITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +552,7 @@
 				334A8A3B1BBC4C740093DA0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

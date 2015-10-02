@@ -25,12 +25,31 @@
 
     self.labelTitleAuthor.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelTitleAuthor.numberOfLines = 0;
+
     self.labelTitleAuthor.text = [NSString stringWithFormat:@"%@\n%@", self.book.title, self.book.author];
+
+    [self replaceNullValuesForTextFields];
 
     self.labelDetails.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelDetails.numberOfLines = 0;
-    self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOutBy:\n%@ on %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, self.book.lastCheckedOut];
+    self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOutBy:\n%@ %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, self.book.lastCheckedOut];
 
+}
+
+-(void)replaceNullValuesForTextFields
+{
+    if ([self.book.publisher  isEqual: @"(null)"]) {
+        self.book.publisher = @"";
+    }
+    if ([self.book.category  isEqual: @"(null)"]){
+        self.book.category = @"";
+    }
+    if (self.book.lastCheckedOutBy == (NSString*)[NSNull null]){
+        self.book.lastCheckedOutBy = @"";
+    }
+    if (self.book.lastCheckedOut == (NSString*)[NSNull null]){
+        self.book.lastCheckedOut = @"";
+    }
 }
 
 - (IBAction)checkoutButtonTapped:(UIButton *)sender {
@@ -51,6 +70,7 @@
 
         NSDateFormatter *formatter = [NSDateFormatter new];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss zzz";
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"GMT"];
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         self.book.lastCheckedOut = dateString;
         

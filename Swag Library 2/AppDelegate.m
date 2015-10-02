@@ -21,8 +21,7 @@
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Arial" size:20],NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     [[UIButton appearance] setTintColor:[UIColor whiteColor]];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    // Override point for customization after application launch.
+
     return YES;
 }
 

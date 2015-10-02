@@ -29,14 +29,6 @@
     [self setDelegateAndTextfieldUI];
     self.book = [Book new];
 
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(endEditing:)];
-    [self.view addGestureRecognizer:tap];
-    
-}
-
--(void)endEditing
-{
-    [self.view endEditing:YES];
 }
 
 -(void)setDelegateAndTextfieldUI
@@ -64,6 +56,7 @@
         [self getDismissAlertView];
     }
 }
+
 - (IBAction)submitButtonTapped:(UIButton *)sender
 {
     [self validateRequiredFields];
@@ -85,7 +78,6 @@
     }else
     {
         [Book postBook:self.book];
-//        [self postBook];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -132,8 +124,6 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-//    NSString *string = [NSString new];
-
     switch (textField.tag) {
         case kTitle:
             [self.textfieldAuthor becomeFirstResponder];
@@ -154,6 +144,7 @@
             break;
     }
 }
+
 
 //-(void)validateCategoriesTextField
 //{

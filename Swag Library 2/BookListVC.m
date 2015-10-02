@@ -14,6 +14,7 @@
 @interface BookListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic)  NSMutableArray *books;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trashButton;
 
 @end
 
@@ -24,22 +25,22 @@
 
     self.title = @"Swag Library";
 
-    [Book getBooksWithBlock:^(NSArray *array) {
-        self.books = [array mutableCopy];
-    }];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [Book getBooksWithBlock:^(NSArray *array) {
-//        self.books = [array mutableCopy];
-//    }];
+    [Book getBooksWithBlock:^(NSArray *array) {
+        self.books = [array mutableCopy];
 
-//    self.books = [Book getBooks];
+        if (self.books.count > 0) {
+            self.trashButton.enabled = YES;
+        }else
+        {
+            self.trashButton.enabled = NO;
+        }
+    }];
 
     self.tableView.editing = NO;
-
 }
 
 -(void)setBooks:(NSMutableArray *)books
@@ -54,6 +55,14 @@
     Book *book = self.books[indexPath.row];
     cell.textLabel.text = book.title.description;
     cell.detailTextLabel.text = book.author.description;
+
+    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
+    cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = cell.imageView.layer.frame.size.height/2;
+    cell.imageView.layer.borderWidth = 1;
+    cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+
     return cell;
 }
 
@@ -97,8 +106,6 @@
         [self.tableView reloadData];
 
         [Book deleteBook:book];
-//        [self deleteBook:book];
-
     }
 }
 
@@ -119,9 +126,8 @@
     UIAlertAction *no = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
-//        [self deleteAllBooks];
         [Book deleteAllBooks];
-        [self viewWillAppear:YES];
+        [self.books removeAllObjects];
         [self.tableView reloadData];
 
     }];
@@ -130,40 +136,6 @@
     [alert addAction:yes];
 
     [self presentViewController:alert animated:YES completion:nil];
-    
 }
-
-//-(void)deleteAllBooks
-//{
-//    NSMutableURLRequest *request = [NSMutableURLRequest new];
-//    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/clean"]];
-//    [request setHTTPMethod:@"DELETE"];
-////    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//
-//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//
-//    if(conn) {
-//        NSLog(@"Connection Successful:%@", conn);
-//    } else {
-//        NSLog(@"Connection could not be made");
-//    }
-//}
-
-//-(void)deleteBook:(Book*)book
-//{
-//    NSMutableURLRequest *request = [NSMutableURLRequest new];
-//    NSString *string = [NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84%@", book.url];
-//    [request setURL:[NSURL URLWithString:string]];
-//    [request setHTTPMethod:@"DELETE"];
-//    //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//
-//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//
-//    if(conn) {
-//        NSLog(@"Connection Successful:%@", conn);
-//    } else {
-//        NSLog(@"Connection could not be made");
-//    }
-//}
 
 @end

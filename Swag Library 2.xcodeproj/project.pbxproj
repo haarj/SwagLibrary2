@@ -18,6 +18,7 @@
 		334A8A401BBC562D0093DA0D /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A3F1BBC562D0093DA0D /* Book.m */; settings = {ASSET_TAGS = (); }; };
 		334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A421BBC57C60093DA0D /* AddBookVC.m */; settings = {ASSET_TAGS = (); }; };
 		334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */; settings = {ASSET_TAGS = (); }; };
+		334B2C4C1BBF046A00E8BE33 /* BookDetailVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334B2C4B1BBF046A00E8BE33 /* BookDetailVC2.swift */; settings = {ASSET_TAGS = (); }; };
 		33E659BA1BBEE0C4009D5857 /* BookListVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E659B91BBEE0C4009D5857 /* BookListVCCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		334A8A421BBC57C60093DA0D /* AddBookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookVC.m; sourceTree = "<group>"; };
 		334A8A441BBC5B7B0093DA0D /* BookDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailVC.h; sourceTree = "<group>"; };
 		334A8A451BBC5B7B0093DA0D /* BookDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailVC.m; sourceTree = "<group>"; };
+		334B2C481BBEFB5C00E8BE33 /* Swag Library 2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swag Library 2-Bridging-Header.h"; sourceTree = "<group>"; };
+		334B2C4B1BBF046A00E8BE33 /* BookDetailVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailVC2.swift; sourceTree = "<group>"; };
 		33E659B81BBEE0C4009D5857 /* BookListVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListVCCell.h; sourceTree = "<group>"; };
 		33E659B91BBEE0C4009D5857 /* BookListVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListVCCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 				334A8A171BBC4C740093DA0D /* LaunchScreen.storyboard */,
 				334A8A1A1BBC4C740093DA0D /* Info.plist */,
 				334A8A091BBC4C740093DA0D /* Supporting Files */,
+				334B2C481BBEFB5C00E8BE33 /* Swag Library 2-Bridging-Header.h */,
+				334B2C4B1BBF046A00E8BE33 /* BookDetailVC2.swift */,
 			);
 			path = "Swag Library 2";
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 		334A89FE1BBC4C740093DA0D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Justin Haar";
 				TargetAttributes = {
@@ -304,6 +310,7 @@
 				334A8A111BBC4C740093DA0D /* BookListVC.m in Sources */,
 				334A8A431BBC57C60093DA0D /* AddBookVC.m in Sources */,
 				33E659BA1BBEE0C4009D5857 /* BookListVCCell.m in Sources */,
+				334B2C4C1BBF046A00E8BE33 /* BookDetailVC2.swift in Sources */,
 				334A8A0E1BBC4C740093DA0D /* AppDelegate.m in Sources */,
 				334A8A461BBC5B7B0093DA0D /* BookDetailVC.m in Sources */,
 				334A8A0B1BBC4C740093DA0D /* main.m in Sources */,
@@ -381,6 +388,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -400,6 +408,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = Swag_Library_2;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -424,6 +433,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -436,6 +446,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = Swag_Library_2;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -445,11 +456,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "Swag Library 2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JustinHaar.Swag-Library-2";
+				PRODUCT_MODULE_NAME = Swag_Library_2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swag Library 2/Swag Library 2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -458,11 +474,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = "Swag Library 2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JustinHaar.Swag-Library-2";
+				PRODUCT_MODULE_NAME = Swag_Library_2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swag Library 2/Swag Library 2-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

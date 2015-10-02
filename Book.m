@@ -25,8 +25,18 @@
     if (self) {
         self.author = dict[@"author"];
         self.category = dict[@"categories"];
-        self.lastCheckedOut = dict[@"lastCheckedOut"];
-        self.lastCheckedOutBy = dict[@"lastCheckedOutBy"];
+        if (dict[@"lastCheckedOut"] == [NSNull null]) {
+            self.lastCheckedOut = @"";
+        }else
+        {
+            self.lastCheckedOut = dict[@"lastCheckedOut"];
+
+        }
+        if (dict[@"lastCheckedOutBy"] == [NSNull null]) {
+            self.lastCheckedOutBy = @"";
+        }else{
+            self.lastCheckedOutBy = dict[@"lastCheckedOutBy"];
+        }
         self.publisher = dict[@"publisher"];
         self.title = dict[@"title"];
         self.url = dict[@"url"];

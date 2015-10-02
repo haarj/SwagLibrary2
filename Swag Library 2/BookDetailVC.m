@@ -49,12 +49,12 @@
     if ([self.book.category  isEqual: @"(null)"]){
         self.book.category = @"";
     }
-    if (self.book.lastCheckedOutBy == (NSString*)[NSNull null]){
-        self.book.lastCheckedOutBy = @"";
-    }
-    if (self.book.lastCheckedOut == (NSString*)[NSNull null]){
-        self.book.lastCheckedOut = @"";
-    }
+//    if (self.book.lastCheckedOutBy == (NSString*)[NSNull null]){
+//        self.book.lastCheckedOutBy = @"";
+//    }
+//    if (self.book.lastCheckedOut == (NSString*)[NSNull null]){
+//        self.book.lastCheckedOut = @"";
+//    }
 }
 
 - (IBAction)checkoutButtonTapped:(UIButton *)sender {

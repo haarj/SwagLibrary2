@@ -11,6 +11,8 @@
 #import "BookDetailVC.h"
 #import "Book.h"
 #import "BookListVCCell.h"
+#import "Swag Library 2-Bridging-Header.h"
+#import <Swag_Library_2-Swift.h>
 
 @interface BookListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *trashButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -110,7 +113,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    BookDetailVC *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"bookdetail"];
+
+    
+    BookDetailVC2 *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"bookdetail"];
 
     Book *book = self.books[indexPath.row];
 

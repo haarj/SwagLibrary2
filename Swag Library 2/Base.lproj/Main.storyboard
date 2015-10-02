@@ -213,10 +213,10 @@
             </objects>
             <point key="canvasLocation" x="1206" y="321"/>
         </scene>
-        <!--Book DetailVC-->
+        <!--Book DetailVC2-->
         <scene sceneID="lz6-VP-Kq5">
             <objects>
-                <viewController storyboardIdentifier="bookdetail" id="Z8x-3X-yzf" customClass="BookDetailVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bookdetail" id="Z8x-3X-yzf" customClass="BookDetailVC2" customModule="Swag_Library_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B2J-NC-2R8"/>
                         <viewControllerLayoutGuide type="bottom" id="ceR-SF-K7G"/>
@@ -274,7 +274,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Checkout"/>
                                 <connections>
-                                    <action selector="checkoutButtonTapped:" destination="Z8x-3X-yzf" eventType="touchUpInside" id="pcv-1b-MBt"/>
+                                    <action selector="checkoutButtonTapped:" destination="Z8x-3X-yzf" eventType="touchUpInside" id="hDc-h7-vhH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -330,14 +330,13 @@
                     <navigationItem key="navigationItem" id="0gw-M8-44J">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="uAJ-Yw-JJv">
                             <connections>
-                                <action selector="shareBook:" destination="Z8x-3X-yzf" id="zMh-kD-DaT"/>
+                                <action selector="shareBook:" destination="Z8x-3X-yzf" id="MlE-nz-FRf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonCheckout" destination="u4h-JS-97h" id="hP3-3W-Kdz"/>
-                        <outlet property="labelDetails" destination="qH7-U6-Tva" id="gBq-bB-Zse"/>
-                        <outlet property="labelTitleAuthor" destination="jfY-oQ-m9O" id="zd1-nI-rlh"/>
+                        <outlet property="labelDetails" destination="qH7-U6-Tva" id="s2C-Hy-6qB"/>
+                        <outlet property="labelTitleAuthor" destination="jfY-oQ-m9O" id="IAI-7y-ofB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0we-K4-yMS" userLabel="First Responder" sceneMemberID="firstResponder"/>

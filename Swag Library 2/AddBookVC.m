@@ -41,15 +41,20 @@
 
     self.textfieldTitle.borderStyle = UITextBorderStyleNone;
     self.textfieldTitle.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textfieldTitle.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     self.textfieldAuthor.borderStyle = UITextBorderStyleNone;
     self.textfieldAuthor.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textfieldAuthor.clearButtonMode = UITextFieldViewModeWhileEditing;
+
 
     self.textfieldPublisher.borderStyle = UITextBorderStyleNone;
     self.textfieldPublisher.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textfieldPublisher.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     self.textfieldCategories.borderStyle = UITextBorderStyleNone;
     self.textfieldCategories.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textfieldCategories.clearButtonMode = UITextFieldViewModeWhileEditing;
 
 }
 

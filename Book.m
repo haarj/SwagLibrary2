@@ -46,7 +46,7 @@
             self.lastCheckedOutBy = dict[@"lastCheckedOutBy"];
         }
 
-        if ([dict[@"publisher"] isEqual:@"null"]) {
+        if ([dict[@"publisher"] isEqual:@"(null)"]) {
             self.publisher = @"";
         }else{
             self.publisher = dict[@"publisher"];

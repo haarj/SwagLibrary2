@@ -30,8 +30,6 @@
 
     self.labelTitleAuthor.text = [NSString stringWithFormat:@"%@\n%@", self.book.title, self.book.author];
 
-//    [self replaceNullValuesForTextFields];
-
     self.labelDetails.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelDetails.numberOfLines = 0;
     self.labelDetails.font = [UIFont systemFontOfSize:14];
@@ -41,21 +39,6 @@
 
 }
 
-//-(void)replaceNullValuesForTextFields
-//{
-//    if ([self.book.publisher  isEqual: @"(null)"]) {
-//        self.book.publisher = @"";
-//    }
-//    if ([self.book.category  isEqual: @"(null)"]){
-//        self.book.category = @"";
-//    }
-//    if (self.book.lastCheckedOutBy == (NSString*)[NSNull null]){
-//        self.book.lastCheckedOutBy = @"";
-//    }
-//    if (self.book.lastCheckedOut == (NSString*)[NSNull null]){
-//        self.book.lastCheckedOut = @"";
-//    }
-//}
 
 - (IBAction)checkoutButtonTapped:(UIButton *)sender {
 

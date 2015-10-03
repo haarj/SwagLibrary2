@@ -27,8 +27,6 @@ class BookDetailVC2: UIViewController {
         self.labelTitleAuthor!.textColor = UIColor.blueColor()
         self.labelTitleAuthor!.text = "\(self.book.title)\n\(self.book.author)"
 
-//        self.replaceNullValuesForTextFields()
-        
         self.labelDetails!.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.labelDetails!.numberOfLines = 0
         self.labelDetails!.font = UIFont.systemFontOfSize(14)
@@ -36,23 +34,8 @@ class BookDetailVC2: UIViewController {
         self.labelDetails!.text = "Publisher: \(self.book.publisher)\nCategories: \(self.book.category)\nLastCheckedOutBy:\n\(self.book.lastCheckedOutBy) \(self.book.lastCheckedOut)"
     }
 
-//    func replaceNullValuesForTextFields() {
-//        if self.book.publisher.isEqual("(null)") {
-//            self.book.publisher = ""
-//        }
-//        if self.book.category.isEqual("(null)") {
-//            self.book.category = ""
-//        }
-
-//        if self.book.lastCheckedOutBy == NSNull() {
-//            self.book.lastCheckedOutBy = (String: "")
-//        }
-//        if self.book.lastCheckedOut == NSNull() {
-//            self.book.lastCheckedOut = ""
-//        }
-//    }
-
     @IBAction func checkoutButtonTapped(sender: UIButton) {
+
         let alert: UIAlertController = UIAlertController.init(title: "Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
 //        var alert: UIAlertController = UIAlertController.alertControllerWithTitle("Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
@@ -70,42 +53,41 @@ class BookDetailVC2: UIViewController {
 
             let textfield: UITextField = (alert.textFields?.first)!
             self.book.lastCheckedOutBy = textfield.text
+
             let formatter: NSDateFormatter = NSDateFormatter.init()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
             formatter.timeZone = NSTimeZone(abbreviation:"GMT")
             let dateString: String = formatter.stringFromDate(NSDate())
             self.book.lastCheckedOut = dateString
+
             Book.updateBook(self.book)
+
+            self.view.endEditing(true)
+
             self.navigationController!.popViewControllerAnimated(true)
 
         }
-//        var add: UIAlertAction = UIAlertAction.actionWithTitle("Add", style: UIAlertActionStyleDefault, handler: {(action: UIAlertAction) in
 
-//            var textfield: UITextField = alert.textFields.firstObject
-//            self.book.lastCheckedOutBy = textfield.text
-//            var formatter: NSDateFormatter = NSDateFormatter.new()
-//            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-//            formatter.timeZone = NSTimeZone.timeZoneWithAbbreviation("GMT")
-//            var dateString: String = formatter.stringFromDate(NSDate.date())
-//            self.book.lastCheckedOut = dateString
-//            Book.updateBook(self.book)
-//            self.navigationController.popViewControllerAnimated(true)
-//
-//        })
         alert.addAction(cancel)
         alert.addAction(add)
+
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func alertTextFieldDidChange(sender: UITextField) {
 
-        let alertController: UIAlertController = UIAlertController()
-
-        if (alertController.presentedViewController != nil) {
-            let login: UITextField = (alertController.textFields?.first)!
-            let okAction: UIAlertAction = (alertController.actions.last)!
-            okAction.enabled = login.text?.characters.count > 0
-        }
+//        let alertController: UIAlertController = UIAlertController()
+//
+//        if (alertController .isEqual(self.presentedViewController)) {
+//            let login: UITextField = (alertController.textFields?.first)!
+//            let okAction: UIAlertAction = (alertController.actions.last)!
+//            okAction.enabled = login.text?.characters.count > 0
+//        }
+        let tf = sender
+        var resp : UIResponder = tf
+        while !(resp is UIAlertController) { resp = resp.nextResponder()! }
+        let alert = resp as! UIAlertController
+        (alert.actions[1] as UIAlertAction).enabled = (tf.text != "")
     }
 
     @IBAction func shareBook(sender: UIBarButtonItem) {

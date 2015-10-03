@@ -89,10 +89,7 @@
     cell.label.numberOfLines = 0;
     cell.label.lineBreakMode = NSLineBreakByWordWrapping;
     cell.label.text = [NSString stringWithFormat:@"%@\n%@", book.title, book.author];
-//    cell.textLabel.text = book.title.description;
-//    cell.detailTextLabel.text = book.author.description;
 
-//    [cell.imageView setFrame:CGRectMake(0, 0, 44, 44)];
     cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 20;
@@ -113,12 +110,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-
-    
     BookDetailVC2 *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"bookdetail"];
 
     Book *book = self.books[indexPath.row];
-
     detailVC.book = book;
     
     [self showViewController:detailVC sender:self];

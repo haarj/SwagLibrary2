@@ -7,6 +7,7 @@
 //
 
 #import "Book.h"
+#import <UIKit/UIKit.h>
 
 @implementation Book
 
@@ -76,15 +77,22 @@
 //
 //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        NSArray *books = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if (!connectionError) {
+            NSArray *books = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 
-        for (NSDictionary *dict in books) {
-            Book *book = [[Book alloc]initWithDictionary:dict];
-            [tempArray addObject:book];
+            for (NSDictionary *dict in books) {
+                Book *book = [[Book alloc]initWithDictionary:dict];
+                [tempArray addObject:book];
+            }
+            complete(tempArray);
+        }else{
+            [tempArray addObject:connectionError];
+            complete(tempArray);
         }
-        complete(tempArray);
+
     }];
 }
+
 
 +(void)deleteAllBooks
 {

@@ -51,24 +51,7 @@
 //
 //    [indicator startAnimating];
 
-    [self.refreshControl beginRefreshing];
-
-    [Book getBooksWithBlock:^(NSArray *array) {
-        self.books = [array mutableCopy];
-
-        if (self.books.count > 0) {
-            self.trashButton.enabled = YES;
-            self.editButton.enabled = YES;
-            //enable edit button
-        }else
-        {
-            self.trashButton.enabled = NO;
-            self.editButton.enabled = NO;
-        }
-
-        [self.refreshControl endRefreshing];
-//        [indicator stopAnimating];
-    }];
+    [self handleRefresh];
 
     self.tableView.editing = NO;
 }
@@ -84,20 +67,27 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookListVCCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellid];
-    Book *book = self.books[indexPath.row];
+    if ([self.books[0] isKindOfClass:[Book class]]) {
 
-    cell.label.font = [UIFont systemFontOfSize:16];
-    cell.label.textColor = [UIColor blueColor];
-    cell.label.alpha = 0.4;
-    cell.label.numberOfLines = 0;
-    cell.label.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.label.text = [NSString stringWithFormat:@"%@\n%@", book.title, book.author];
+        Book *book = self.books[indexPath.row];
 
-    cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
-    cell.imageView.clipsToBounds = YES;
-    cell.imageView.layer.cornerRadius = 20;
-    cell.imageView.layer.borderWidth = 1;
-    cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        cell.label.font = [UIFont systemFontOfSize:16];
+        cell.label.textColor = [UIColor blueColor];
+        cell.label.alpha = 0.4;
+        cell.label.numberOfLines = 0;
+        cell.label.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.label.text = [NSString stringWithFormat:@"%@\n%@", book.title, book.author];
+
+        cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
+        cell.imageView.clipsToBounds = YES;
+        cell.imageView.layer.cornerRadius = 20;
+        cell.imageView.layer.borderWidth = 1;
+        cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    }else
+    {
+        cell.label.text = nil;
+        cell.imageView.image = nil;
+    }
 
     return cell;
 }
@@ -182,10 +172,47 @@
 -(void)handleRefresh
 {
     [self.refreshControl beginRefreshing];
+
     [Book getBooksWithBlock:^(NSArray *array) {
         self.books = [array mutableCopy];
+
+        if (array.count>0) {
+
+            if ([array[0] isKindOfClass:[NSError class]])
+            {
+                [self getErrorAlert];
+                self.trashButton.enabled = NO;
+                self.editButton.enabled = NO;
+
+            }else if ([array[0] isKindOfClass:[Book class]])
+            {
+
+                self.books = [array mutableCopy];
+                self.trashButton.enabled = YES;
+                self.editButton.enabled = YES;
+            }
+        }else
+        {
+            self.trashButton.enabled = NO;
+            self.editButton.enabled = NO;
+        }
+
         [self.refreshControl endRefreshing];
     }];
+
+}
+
+-(void)getErrorAlert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error connecting to the server" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 @end

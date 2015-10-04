@@ -10,5 +10,7 @@
 
 @interface BookListVC : UIViewController
 
+-(void)getErrorAlert;
+
 @end
 

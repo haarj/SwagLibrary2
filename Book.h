@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BookListVC.h"
 
 @interface Book : NSObject
 

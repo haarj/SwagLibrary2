@@ -40,16 +40,18 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+//    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    indicator.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+//
+//    indicator.hidden = NO;
+//    indicator.color = [UIColor blueColor];
+//    indicator.hidesWhenStopped = YES;
 
-    indicator.hidden = NO;
-    indicator.color = [UIColor blueColor];
-    indicator.hidesWhenStopped = YES;
+//    [self.view addSubview:indicator];
+//
+//    [indicator startAnimating];
 
-    [self.view addSubview:indicator];
-
-    [indicator startAnimating];
+    [self.refreshControl beginRefreshing];
 
     [Book getBooksWithBlock:^(NSArray *array) {
         self.books = [array mutableCopy];
@@ -64,7 +66,8 @@
             self.editButton.enabled = NO;
         }
 
-        [indicator stopAnimating];
+        [self.refreshControl endRefreshing];
+//        [indicator stopAnimating];
     }];
 
     self.tableView.editing = NO;

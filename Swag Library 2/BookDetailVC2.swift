@@ -37,7 +37,7 @@ class BookDetailVC2: UIViewController {
     @IBAction func checkoutButtonTapped(sender: UIButton) {
 
         let alert: UIAlertController = UIAlertController.init(title: "Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
-//        var alert: UIAlertController = UIAlertController.alertControllerWithTitle("Checkout", message: "Who is checking the book out?", preferredStyle: UIAlertControllerStyle.Alert)
+
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = "Enter Name"
             textField.autocapitalizationType = UITextAutocapitalizationType.Words
@@ -76,16 +76,11 @@ class BookDetailVC2: UIViewController {
 
     func alertTextFieldDidChange(sender: UITextField) {
 
-//        let alertController: UIAlertController = UIAlertController()
-//
-//        if (alertController .isEqual(self.presentedViewController)) {
-//            let login: UITextField = (alertController.textFields?.first)!
-//            let okAction: UIAlertAction = (alertController.actions.last)!
-//            okAction.enabled = login.text?.characters.count > 0
-//        }
         let tf = sender
         var resp : UIResponder = tf
-        while !(resp is UIAlertController) { resp = resp.nextResponder()! }
+        while !(resp is UIAlertController) {
+            resp = resp.nextResponder()!
+        }
         let alert = resp as! UIAlertController
         (alert.actions[1] as UIAlertAction).enabled = (tf.text != "")
     }

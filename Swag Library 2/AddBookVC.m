@@ -25,6 +25,7 @@
 @implementation AddBookVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.title = @"Add Book";
     [self setDelegateAndTextfieldUI];
@@ -91,6 +92,7 @@
         [self getErrorsAlertViewFromArray:errors];
     }else
     {
+        [self.view endEditing:YES];
         [Book postBook:self.book];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

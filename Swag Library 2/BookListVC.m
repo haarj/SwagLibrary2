@@ -30,12 +30,15 @@
     [super viewDidLoad];
 
     self.title = @"Swag Library";
+    self.view.backgroundColor = [UIColor yellowColor];
 
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.tintColor = [UIColor whiteColor];
     self.refreshControl.backgroundColor = [UIColor blueColor];
+
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    self.tableView.alwaysBounceVertical = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -46,10 +49,14 @@
 //    indicator.hidden = NO;
 //    indicator.color = [UIColor blueColor];
 //    indicator.hidesWhenStopped = YES;
-
+//
 //    [self.view addSubview:indicator];
 //
 //    [indicator startAnimating];
+
+    [self.tableView setContentOffset:CGPointMake(0, -60) animated:YES];
+
+    [self.refreshControl beginRefreshing];
 
     [self handleRefresh];
 
@@ -171,7 +178,6 @@
 
 -(void)handleRefresh
 {
-    [self.refreshControl beginRefreshing];
 
     [Book getBooksWithBlock:^(NSArray *array) {
         self.books = [array mutableCopy];

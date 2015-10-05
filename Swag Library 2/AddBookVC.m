@@ -12,6 +12,7 @@
 #import "BookListVC.h"
 
 @interface AddBookVC () <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldTitle;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldAuthor;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonAddBook;
 
 @property Book *book;
+
 @end
 
 @implementation AddBookVC
@@ -27,6 +29,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    //Set Title, textfield delegates, and UI
     self.title = @"Add Book";
     [self setDelegateAndTextfieldUI];
     self.book = [Book new];
@@ -72,6 +75,7 @@
     }
 }
 
+//Validate Title and Author fields have text
 - (IBAction)submitButtonTapped:(UIButton *)sender
 {
     [self validateRequiredFields];
@@ -81,16 +85,21 @@
 -(void)validateRequiredFields
 {
     NSMutableArray *errors = [NSMutableArray new];
+    //Title is empty
     if ([self.textfieldTitle.text isEqual:@""]) {
         [errors addObject:self.textfieldTitle.placeholder];
     }
+    //Author is empty
     if ([self.textfieldAuthor.text isEqual:@""]) {
         [errors addObject:self.textfieldAuthor.placeholder];
     }
 
+    //Title and/or Author is missing
     if (errors.count > 0) {
         [self getErrorsAlertViewFromArray:errors];
-    }else
+    }
+    //Post book and dismiss
+    else
     {
         [self.view endEditing:YES];
         [Book postBook:self.book];
@@ -98,6 +107,21 @@
     }
 }
 
+//Alert with Title and/or author errors
+-(void)getErrorsAlertViewFromArray:(NSMutableArray*)array
+{
+    NSString *string = [array componentsJoinedByString:@"\n"];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error(s)" message:[NSString stringWithFormat:@"The following field(s) are required:\n%@", string] preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+//Alert called when there is text in any field
 -(void)getDismissAlertView
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Don't Save?" message:@"Are you sure you want to leave without saving changes?" preferredStyle:UIAlertControllerStyleAlert];
@@ -109,19 +133,6 @@
 
     [alert addAction:no];
     [alert addAction:yes];
-
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
--(void)getErrorsAlertViewFromArray:(NSMutableArray*)array
-{
-    NSString *string = [array componentsJoinedByString:@"\n"];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error(s)" message:[NSString stringWithFormat:@"The following field(s) are required:\n%@", string] preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-
-
-    [alert addAction:ok];
 
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -138,6 +149,7 @@
     return YES;
 }
 
+//Set text in respective textfield to a book objects property
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     switch (textField.tag) {

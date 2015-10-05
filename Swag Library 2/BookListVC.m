@@ -32,13 +32,19 @@
     self.title = @"Swag Library";
     self.view.backgroundColor = [UIColor yellowColor];
 
+    //Add refresh control at tableView[0]
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl setTintColor:[UIColor whiteColor]];
     self.refreshControl.backgroundColor = [UIColor blueColor];
 
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.tableView setContentOffset:CGPointMake(0, -60) animated:YES];
     self.tableView.alwaysBounceVertical = YES;
+
+    //Only show once
+    [self.refreshControl beginRefreshing];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -53,10 +59,6 @@
 //    [self.view addSubview:indicator];
 //
 //    [indicator startAnimating];
-
-    [self.tableView setContentOffset:CGPointMake(0, -60) animated:YES];
-
-    [self.refreshControl beginRefreshing];
 
     [self handleRefresh];
 
@@ -74,10 +76,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookListVCCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellid];
+    //Array has book objects
     if ([self.books[0] isKindOfClass:[Book class]]) {
 
         Book *book = self.books[indexPath.row];
 
+        //Set label UI
         cell.label.font = [UIFont systemFontOfSize:16];
         cell.label.textColor = [UIColor blueColor];
         cell.label.alpha = 0.4;
@@ -85,6 +89,7 @@
         cell.label.lineBreakMode = NSLineBreakByWordWrapping;
         cell.label.text = [NSString stringWithFormat:@"%@\n%@", book.title, book.author];
 
+        //Set imageView UI
         cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
         cell.imageView.clipsToBounds = YES;
         cell.imageView.layer.cornerRadius = 20;
@@ -105,10 +110,11 @@
     return self.books.count;
 }
 
+//Go to BookDetailVC
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     BookDetailVC2 *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"bookdetail"];
 
@@ -119,11 +125,13 @@
 
 }
 
+//Set Edting style
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return  UITableViewCellEditingStyleDelete;
 }
 
+//Allows user to swipe cell left
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
@@ -131,6 +139,7 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Delete book from array, tableview, and server
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Book *book = self.books[indexPath.row];
         [self.books removeObject:book];
@@ -143,18 +152,20 @@
 
 #pragma mark - Button Methods
 
+//Get Trash alert
 - (IBAction)trashButtonTapped:(UIBarButtonItem *)sender
 {
     [self deleteAllBooksAlert];
 }
 
-- (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
-
-    self.tableView.editing = !self.tableView.editing;
-}
+//- (IBAction)editButtonTapped:(UIBarButtonItem *)sender {
+//
+//    self.tableView.editing = !self.tableView.editing;
+//}
 
 #pragma mark - Helper Methods
 
+//Delete from server, array, and reload tableview
 -(void)deleteAllBooksAlert
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Book(s)?" message:@"Choosing Yes will delete all books!" preferredStyle:UIAlertControllerStyleAlert];
@@ -176,6 +187,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+//Get books from server
 -(void)handleRefresh
 {
 
@@ -184,12 +196,14 @@
 
         if (array.count>0) {
 
+            //If array contains an error
             if ([array[0] isKindOfClass:[NSError class]])
             {
                 [self getErrorAlert];
                 self.trashButton.enabled = NO;
                 self.editButton.enabled = NO;
 
+            //Iff array contains books
             }else if ([array[0] isKindOfClass:[Book class]])
             {
 
@@ -208,6 +222,7 @@
 
 }
 
+//NSError from server alert
 -(void)getErrorAlert
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error connecting to the server" preferredStyle:UIAlertControllerStyleAlert];

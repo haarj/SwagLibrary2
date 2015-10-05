@@ -22,19 +22,18 @@
 
     self.title = self.book.title;
 
-
+    //Title/Author label UI
     self.labelTitleAuthor.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelTitleAuthor.numberOfLines = 0;
     self.labelTitleAuthor.font = [UIFont systemFontOfSize:20];
     self.labelTitleAuthor.textColor = [UIColor blueColor];
-
     self.labelTitleAuthor.text = [NSString stringWithFormat:@"%@\n%@", self.book.title, self.book.author];
 
+    //Detail label UI
     self.labelDetails.lineBreakMode = NSLineBreakByWordWrapping;
     self.labelDetails.numberOfLines = 0;
     self.labelDetails.font = [UIFont systemFontOfSize:14];
     self.labelDetails.textColor = [UIColor grayColor];
-
     self.labelDetails.text = [NSString stringWithFormat:@"Publisher: %@\nCategories: %@\nLastCheckedOutBy:\n%@ %@", self.book.publisher, self.book.category, self.book.lastCheckedOutBy, self.book.lastCheckedOut];
 
 }

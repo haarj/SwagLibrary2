@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Book ListVC-->
@@ -190,21 +189,13 @@
                                 <segue destination="hT7-XK-uV1" kind="presentation" id="G1n-kR-bAD"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="trash" id="z4f-Ra-mPW">
-                                <connections>
-                                    <action selector="trashButtonTapped:" destination="BYZ-38-t0r" id="Zgg-QU-yP1"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="edit" id="Efc-mB-aeA">
-                                <connections>
-                                    <action selector="editButtonTapped:" destination="BYZ-38-t0r" id="iSz-aT-NCp"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="z4f-Ra-mPW">
+                            <connections>
+                                <action selector="trashButtonTapped:" destination="BYZ-38-t0r" id="Zgg-QU-yP1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="Efc-mB-aeA" id="vag-Oe-zid"/>
                         <outlet property="tableView" destination="LWx-OA-1c8" id="i2N-0V-enu"/>
                         <outlet property="trashButton" destination="z4f-Ra-mPW" id="7Fa-H9-jJ6"/>
                     </connections>

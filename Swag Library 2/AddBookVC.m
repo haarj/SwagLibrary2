@@ -62,6 +62,7 @@
 
 }
 
+#pragma mark - Button Methods
 
 - (IBAction)dismissButtonTapped:(UIBarButtonItem *)sender
 {
@@ -81,6 +82,8 @@
     [self validateRequiredFields];
     
 }
+
+#pragma mark - Helper Methods
 
 -(void)validateRequiredFields
 {
@@ -146,6 +149,18 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+-(void)getConnectionErrorAlert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the connection to the server" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark - TextField Delegate Methods
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -181,19 +196,6 @@
             break;
     }
 }
-
--(void)getConnectionErrorAlert
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the connection to the server" preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-
-
-    [alert addAction:ok];
-
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 
 //-(void)validateCategoriesTextField
 //{

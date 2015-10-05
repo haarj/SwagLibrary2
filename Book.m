@@ -101,13 +101,21 @@
     [request setHTTPMethod:@"DELETE"];
     //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if (!connectionError) {
+            NSLog(@"Connection Successful:%@", connectionError);
+        }else{
+            NSLog(@"Connection could not be made");
+        }
+    }];
 
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
 }
 
 +(void)deleteBook:(Book*)book
@@ -118,13 +126,21 @@
     [request setHTTPMethod:@"DELETE"];
     //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if (!connectionError) {
+            NSLog(@"Connection Successful:%@", connectionError);
+        }else{
+            NSLog(@"Connection could not be made");
+        }
+    }];
 
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
 }
 
 +(void)postBook:(Book*)book
@@ -139,14 +155,22 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
 
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if (!connectionError) {
+            NSLog(@"Connection Successful:%@", connectionError);
+        }else{
+            NSLog(@"Connection could not be made");
+        }
+    }];
 
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-    
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
+
 }
 
 +(void)updateBook:(Book*)book
@@ -162,14 +186,23 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
 
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
-    if(conn) {
-        NSLog(@"Connection Successful:%@", conn);
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if (!connectionError) {
+            NSLog(@"Connection Successful:%@", connectionError);
+        }else{
+            NSLog(@"Connection could not be made");
+        }
+    }];
+
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//    if(conn) {
+//        NSLog(@"Connection Successful:%@", conn);
+//    } else {
+//        NSLog(@"Connection could not be made");
+//    }
+
 }
 
 @end

@@ -79,6 +79,7 @@
     //Array has book objects
     if ([self.books[0] isKindOfClass:[Book class]]) {
 
+
         Book *book = self.books[indexPath.row];
 
         //Set label UI
@@ -93,12 +94,12 @@
         cell.imageView.image = [UIImage imageNamed:@"Bookshelf"];
         cell.imageView.clipsToBounds = YES;
         cell.imageView.layer.cornerRadius = 20;
-        cell.imageView.layer.borderWidth = 1;
-        cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+//        cell.imageView.layer.borderWidth = 1;
+//        cell.imageView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     }else
     {
         cell.label.text = nil;
-        cell.imageView = nil;
+        cell.imageView.image = nil;
     }
 
     return cell;

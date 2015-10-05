@@ -98,7 +98,7 @@
     }else
     {
         cell.label.text = nil;
-        cell.imageView.image = nil;
+        cell.imageView = nil;
     }
 
     return cell;

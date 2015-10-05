@@ -33,7 +33,7 @@ class BookDetailVC2: UIViewController {
         self.labelDetails!.numberOfLines = 0
         self.labelDetails!.font = UIFont.systemFontOfSize(14)
         self.labelDetails!.textColor = UIColor.grayColor()
-        self.labelDetails!.text = "Publisher: \(self.book.publisher)\nCategories: \(self.book.category)\nLastCheckedOutBy:\n\(self.book.lastCheckedOutBy) \(self.book.lastCheckedOut)"
+        self.labelDetails!.text = "Publisher: \(self.book.publisher)\nCategories: \(self.book.category)\nLast Checked Out By:\n\(self.book.lastCheckedOutBy) on \(self.book.lastCheckedOut)"
     }
 
     //Alertview for adding name to book.lastCheckedOutBy property

@@ -64,7 +64,7 @@
 +(void)getBooksWithBlock:(void(^)(NSArray*))complete
 {
     NSMutableArray *tempArray = [NSMutableArray new];
-    NSString *string = @"https://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/books";
+    NSString *string = @"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/books";
     string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:string];
 

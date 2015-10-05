@@ -29,10 +29,4 @@
 
 +(void)updateBook:(Book*)book;
 
-
-
-
-//+(NSMutableArray*)getBooks;
-
-
 @end

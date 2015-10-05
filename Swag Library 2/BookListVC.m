@@ -143,11 +143,22 @@
     //Delete book from array, tableview, and server
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Book *book = self.books[indexPath.row];
-        [self.books removeObject:book];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.books removeObject:book];
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         self.tableView.editing = NO;
 
-        [Book deleteBook:book];
+//        [Book deleteBook:book];
+        [Book deleteBook:book :^(BOOL error) {
+            if (error) {
+                [self getErrorAlert];
+            }else{
+                [self.books removeObject:book];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }];
+
+//        [self.navigationController popViewControllerAnimated:YES];
+
     }
 }
 
@@ -174,11 +185,22 @@
     UIAlertAction *no = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
-        [Book deleteAllBooks];
-        [self.books removeAllObjects];
-        [self.tableView reloadData];
-        self.trashButton.enabled = NO;
-        self.editButton.enabled = NO;
+//        [Book deleteAllBooks];
+        [Book deleteAllBooks:^(BOOL error) {
+            if (error) {
+                [self getErrorAlert];
+            }else{
+                [self.books removeAllObjects];
+                [self.tableView reloadData];
+                self.trashButton.enabled = NO;
+                self.editButton.enabled = NO;
+            }
+        }];
+        
+//        [self.books removeAllObjects];
+//        [self.tableView reloadData];
+//        self.trashButton.enabled = NO;
+//        self.editButton.enabled = NO;
 
     }];
 

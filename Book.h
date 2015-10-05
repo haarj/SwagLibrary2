@@ -21,12 +21,12 @@
 
 +(void)getBooksWithBlock:(void(^)(NSArray*))complete;
 
-+(void)deleteAllBooks;
++(void)deleteAllBooks :(void(^)(BOOL))complete;
 
-+(void)deleteBook:(Book*)book;
++(void)deleteBook:(Book*)book :(void(^)(BOOL))complete;
 
-+(void)postBook:(Book*)book;
++(void)postBook:(Book*)book :(void(^)(BOOL))complete;
 
-+(void)updateBook:(Book*)book;
++(void)updateBook:(Book*)book :(void(^)(BOOL))complete;
 
 @end

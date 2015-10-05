@@ -94,8 +94,9 @@
 }
 
 
-+(void)deleteAllBooks
++(void)deleteAllBooks:(void(^)(BOOL))complete
 {
+    __block BOOL error;
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84/clean"]];
     [request setHTTPMethod:@"DELETE"];
@@ -103,10 +104,13 @@
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (!connectionError) {
+            error = NO;
             NSLog(@"Connection Successful:%@", connectionError);
         }else{
+            error = YES;
             NSLog(@"Connection could not be made");
         }
+        complete(error);
     }];
 
 //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -118,8 +122,9 @@
 //    }
 }
 
-+(void)deleteBook:(Book*)book
++(void)deleteBook:(Book*)book :(void(^)(BOOL))complete
 {
+    __block BOOL error;
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     NSString *string = [NSString stringWithFormat:@"http://prolific-interview.herokuapp.com/560b7c9763600c00097c4a84%@", book.url];
     [request setURL:[NSURL URLWithString:string]];
@@ -128,10 +133,13 @@
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (!connectionError) {
+            error = NO;
             NSLog(@"Connection Successful:%@", connectionError);
         }else{
+            error = YES;
             NSLog(@"Connection could not be made");
         }
+        complete(error);
     }];
 
 //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -143,8 +151,9 @@
 //    }
 }
 
-+(void)postBook:(Book*)book
++(void)postBook:(Book*)book :(void(^)(BOOL))complete
 {
+    __block BOOL error;
     NSString *post = [NSString stringWithFormat:@"title=%@&author=%@&publisher=%@&categories=%@", book.title, book.author, book.publisher, book.category];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
@@ -157,10 +166,13 @@
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (!connectionError) {
+            error = NO;
             NSLog(@"Connection Successful:%@", connectionError);
         }else{
+            error = YES;
             NSLog(@"Connection could not be made");
         }
+        complete(error);
     }];
 
 //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -173,8 +185,9 @@
 
 }
 
-+(void)updateBook:(Book*)book
++(void)updateBook:(Book*)book :(void(^)(BOOL))complete
 {
+    __block BOOL error;
     NSString *post = [NSString stringWithFormat:@"lastCheckedOutBy=%@&lastCheckedOut=%@", book.lastCheckedOutBy, book.lastCheckedOut];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
@@ -189,10 +202,13 @@
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (!connectionError) {
+            error = NO;
             NSLog(@"Connection Successful:%@", connectionError);
         }else{
+            error = YES;
             NSLog(@"Connection could not be made");
         }
+        complete(error);
     }];
 
 //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];

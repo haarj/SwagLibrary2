@@ -62,8 +62,15 @@
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         self.book.lastCheckedOut = dateString;
         
-        [Book updateBook:self.book];
-        [self.navigationController popViewControllerAnimated:YES];
+//        [Book updateBook:self.book];
+        [Book updateBook:self.book :^(BOOL error) {
+            if (error) {
+                [self getErrorAlert];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+
+            }
+        }];
     }];
 
     [alert addAction:cancel];
@@ -94,5 +101,19 @@
 
     UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:nil];
+}
+
+//NSError from server alert
+-(void)getErrorAlert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error connecting to the server" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 @end

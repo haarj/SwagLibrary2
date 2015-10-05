@@ -66,11 +66,18 @@ class BookDetailVC2: UIViewController {
             let dateString: String = formatter.stringFromDate(NSDate())
             self.book.lastCheckedOut = dateString
 
-            Book.updateBook(self.book)
+//            Book.updateBook(self.book)
+            Book.updateBook(self.book, { (error : Bool) -> Void in
+                if error.boolValue == true{
+                    self.getErrorAlert()
+                }else{
+                    self.navigationController!.popViewControllerAnimated(true)
+                }
+            })
 
             self.view.endEditing(true)
 
-            self.navigationController!.popViewControllerAnimated(true)
+//            self.navigationController!.popViewControllerAnimated(true)
 
         }
 
@@ -99,5 +106,14 @@ class BookDetailVC2: UIViewController {
         items.addObject(message)
         let activityController: UIActivityViewController = UIActivityViewController(activityItems:items as [AnyObject], applicationActivities: nil)
         self.presentViewController(activityController, animated: true, completion: nil)
+    }
+
+    func getErrorAlert() {
+//        var alert: UIAlertController = UIAlertController.alertControllerWithTitle("Error", message: "There was an error connecting to the server", preferredStyle: UIAlertControllerStyleAlert)
+        let alert: UIAlertController = UIAlertController.init(title: "Error", message: "There was an error connecting to the server", preferredStyle: UIAlertControllerStyle.Alert)
+        let ok: UIAlertAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+//        var ok: UIAlertAction = UIAlertAction.actionWithTitle("OK", style: UIAlertActionStyleCancel, handler: nil)
+        alert.addAction(ok)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }

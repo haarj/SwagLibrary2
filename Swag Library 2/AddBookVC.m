@@ -101,9 +101,18 @@
     //Post book and dismiss
     else
     {
+        
         [self.view endEditing:YES];
-        [Book postBook:self.book];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [Book postBook:self.book :^(BOOL error) {
+            if (error) {
+                [self getConnectionErrorAlert];
+            }else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+
+            }
+        }];
+//        [Book postBook:self.book];
+//        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -171,6 +180,18 @@
         default:
             break;
     }
+}
+
+-(void)getConnectionErrorAlert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the connection to the server" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+
+
+    [alert addAction:ok];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
